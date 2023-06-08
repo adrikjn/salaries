@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\EmployesRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EmployesRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EmployesRepository::class)]
 class Employes
@@ -14,28 +16,36 @@ class Employes
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
     private ?string $poste = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
     private ?float $salaire = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $datedenaissance = null;
+    #[ORM\Column(type: 'date')]
+    #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
+    private ?\DateTimeInterface $datedenaissance = null;
 
     public function getId(): ?int
     {
@@ -126,15 +136,14 @@ class Employes
         return $this;
     }
 
-    public function getDatedenaissance(): ?string
+    public function getDatedenaissance(): ?\DateTimeInterface
     {
         return $this->datedenaissance;
     }
 
-    public function setDatedenaissance(string $datedenaissance): static
+    public function setDatedenaissance(?DateTimeInterface $datedenaissance): self
     {
         $this->datedenaissance = $datedenaissance;
-
         return $this;
     }
 }

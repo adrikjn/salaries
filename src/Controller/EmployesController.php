@@ -22,7 +22,7 @@ class EmployesController extends AbstractController
         ]);
     }
 
-    #[Route('/modifier/employes', name: 'update')]
+    #[Route('/modifier/employes/{id}', name: 'update')]
     #[Route('/ajout/employes', name: 'form')]
     public function form(Request $globals, EntityManagerInterface $manager, Employes $employes = null): Response{
         
