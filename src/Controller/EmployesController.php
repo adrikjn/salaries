@@ -22,10 +22,13 @@ class EmployesController extends AbstractController
         ]);
     }
 
+    #[Route('/modifier/employes', name: 'update')]
     #[Route('/ajout/employes', name: 'form')]
-    public function form(Request $globals, EntityManagerInterface $manager){
+    public function form(Request $globals, EntityManagerInterface $manager, Employes $employes = null): Response{
         
-        $employes = new Employes;
+        if($employes == null){
+            $employes = new Employes;
+        }
 
         $formEmploye = $this->createForm(EmployeType::class, $employes);
 
@@ -34,12 +37,22 @@ class EmployesController extends AbstractController
         if($formEmploye->isSubmitted() && $formEmploye->isValid()) {
             $manager->persist($employes);
             $manager->flush();
-            return $this->redirectToRoute("employes");
+            return $this->redirectToRoute("employes", [
+                "id" => $employes->getId()
+            ]);
         }
 
         return $this->renderForm('employes/form.html.twig', [
             'formEmploye' => $formEmploye,
+            'editEmploye' => $employes->getId() !== null
         ]);
+    }
+
+    #[Route('/delete/employes/{id}', name: 'delete')]
+    public function delete(Employes $employes, EntityManagerInterface $manager): Response{
+        $manager->remove($employes);
+        $manager->flush();
+        return $this->redirectToRoute('employes');
     }
 }
  

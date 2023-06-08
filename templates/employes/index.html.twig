@@ -35,10 +35,10 @@
 						<td>{{ employe.salaire }}</td>
 						<td>{{ employe.datedenaissance }}</td>
 						<td>
-							<a href="">
+							<a href="{{ path('update', {id:employe.id}) }}">
 								<i class="bi bi-pencil-square"></i>
 							</a>
-							<a href="">
+							<a href="{{ path('delete', {id:employe.id}) }}">
 								<i class="bi bi-trash text-danger"></i>
 							</a>
 						</td>

@@ -1,11 +1,21 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Ajouter Employé
+{% block title %}
+{% if formEmploye %}
+Ajouter Employé
+{% else %}
+Modifier Employé
+{% endif %}
 {% endblock %}
 
 {% block body %}
 
+{% if formEmploye %}
+    <h2 class="text-primary text-center">Modifier un employé</h2>
+{% else %}
 	<h2 class="text-primary text-center">Ajouter un employé</h2>
+{% endif %}
+
 
 	<div class="container">
 		{{ form_start(formEmploye) }}
@@ -15,6 +25,7 @@
         {{ form_row(formEmploye.telephone) }}
         {{ form_row(formEmploye.email) }}
         {{ form_row(formEmploye.adresse) }}
+        {# Il faudra retirer le poste du formulaire #}
         {{ form_row(formEmploye.poste) }}
         {{ form_row(formEmploye.salaire) }}
         {{ form_row(formEmploye.datedenaissance) }}
