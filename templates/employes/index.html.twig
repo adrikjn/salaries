@@ -33,7 +33,7 @@
 						<td>{{ employe.salaire }}</td>
 						<td>{{ employe.datedenaissance|date('Y-m-d') }}</td>
 						<td>
-							<a href="{{ path('see', {id:employe.id}) }}">
+							<a class="text-decoration-none" href="{{ path('see', {id:employe.id}) }}">
 								<i class="bi bi-eye text-success"></i>
 							</a>
 							<a href="{{ path('update', {id:employe.id}) }}" class="text-decoration-none">
