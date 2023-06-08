@@ -54,5 +54,12 @@ class EmployesController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute('employes');
     }
+
+    #[Route('/see/employes/{id}', name: "see")]
+    public function see(Employes $employe){
+        return $this->render('employes/see.html.twig', [
+            'employe' => $employe
+        ]);
+    }
 }
  
