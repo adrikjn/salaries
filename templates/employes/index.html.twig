@@ -1,20 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EmployesController!{% endblock %}
+{% block title %}Gestion Employes{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/stagiaire/Desktop/salaries/src/Controller/EmployesController.php'|file_link(0) }}">src/Controller/EmployesController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/stagiaire/Desktop/salaries/templates/employes/index.html.twig'|file_link(0) }}">templates/employes/index.html.twig</a></code></li>
-    </ul>
+<h1 class="text-center mx-auto my-3 text-primary">Employes</h1>
+<div class="container">
+    <table class="table table-primary text-center">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>Adresse</th>        
+                <th>Salaire</th>        
+                <th>DateDeNaissance</th>        
+                <th>Option</th>        
+            </tr>
+        </thead>
+        <tbody>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a href=""><i class="bi bi-pencil-square"></i></a>
+                <a href=""><i class="bi bi-trash text-danger"></i></a>
+            </td>  
+        </tbody>
+    </table>
 </div>
+
 {% endblock %}
