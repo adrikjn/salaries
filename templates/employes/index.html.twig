@@ -1,40 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gestion Employes{% endblock %}
+{% block title %}Gestion Employes
+{% endblock %}
 
 {% block body %}
 
-<h1 class="text-center mx-auto my-3 text-primary">Employes</h1>
-<div class="container">
-    <table class="table table-primary text-center">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Prenom</th>
-                <th>Nom</th>
-                <th>Telephone</th>
-                <th>Email</th>
-                <th>Adresse</th>        
-                <th>Salaire</th>        
-                <th>DateDeNaissance</th>        
-                <th>Option</th>        
-            </tr>
-        </thead>
-        <tbody>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <a href=""><i class="bi bi-pencil-square"></i></a>
-                <a href=""><i class="bi bi-trash text-danger"></i></a>
-            </td>  
-        </tbody>
-    </table>
-</div>
+	<h1 class="text-center mx-auto my-3 text-primary">Employes</h1>
+	<div class="container">
+		<table class="table table-primary text-center">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Prenom</th>
+					<th>Nom</th>
+					<th>Telephone</th>
+					<th>Email</th>
+					<th>Adresse</th>
+					<th>Poste</th>
+					<th>Salaire</th>
+					<th>DateDeNaissance</th>
+					<th>Option</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for employe in employes %}
+					<tr>
+						<td>{{ employe.id }}</td>
+						<td>{{ employe.prenom }}</td>
+						<td>{{ employe.nom }}</td>
+						<td>{{ employe.telephone }}</td>
+						<td>{{ employe.email }}</td>
+						<td>{{ employe.adresse }}</td>
+						<td>{{ employe.poste }}</td>
+						<td>{{ employe.salaire }}</td>
+						<td>{{ employe.datedenaissance }}</td>
+						<td>
+							<a href="">
+								<i class="bi bi-pencil-square"></i>
+							</a>
+							<a href="">
+								<i class="bi bi-trash text-danger"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
 {% endblock %}

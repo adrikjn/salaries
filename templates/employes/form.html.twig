@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Ajouter Employé
+{% endblock %}
+
+{% block body %}
+
+	<h2 class="text-primary text-center">Ajouter un employé</h2>
+
+	<div class="container">
+		{{ form_start(formEmploye) }}
+
+        {{ form_row(formEmploye.prenom) }}
+        {{ form_row(formEmploye.nom) }}
+        {{ form_row(formEmploye.telephone) }}
+        {{ form_row(formEmploye.email) }}
+        {{ form_row(formEmploye.adresse) }}
+        {{ form_row(formEmploye.poste) }}
+        {{ form_row(formEmploye.salaire) }}
+        {{ form_row(formEmploye.datedenaissance) }}
+
+        <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+
+		{{ form_end(formEmploye) }}
+	</div>
+
+
+{% endblock %}
