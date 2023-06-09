@@ -61,5 +61,15 @@ class EmployesController extends AbstractController
             'employe' => $employe
         ]);
     }
+
+    #[Route('/salaires/employes', name: "salaires")]
+    public function salaire(EmployesRepository $repo): Response{
+
+        $salaires = $repo->findBy([], ['salaire' => 'DESC']);
+        return $this->render('employes/salary.html.twig', [
+            'salaires' => $salaires
+        ]);
+    }
+
 }
  

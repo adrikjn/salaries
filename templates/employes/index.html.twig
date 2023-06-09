@@ -16,6 +16,7 @@
 					<th>Telephone</th>
 					<th>Email</th>
 					<th>Adresse</th>
+					<th>Poste</th>
 					<th>Salaire</th>
 					<th>DateDeNaissance</th>
 					<th>Options</th>
@@ -30,6 +31,7 @@
 						<td>{{ employe.telephone }}</td>
 						<td>{{ employe.email }}</td>
 						<td>{{ employe.adresse }}</td>
+						<td>{{ employe.poste }}</td>
 						<td>{{ employe.salaire }}</td>
 						<td>{{ employe.datedenaissance|date('Y-m-d') }}</td>
 						<td>
@@ -42,12 +44,20 @@
 							<a href="{{ path('delete', {id:employe.id}) }}" class="text-decoration-none">
 								<i class="bi bi-trash text-danger"></i>
 							</a>
-
 						</td>
 
 					</tr>
 				</tbody>
 			</tbody>
-		</tr>
-	{% endfor %}
-</tbody></table></div>{% endblock %}
+		{% endfor %}
+		</table>
+	<div class="row">
+		<div class="col-6">
+			<a class="btn btn-outline-success  text-dark border border-dark w-100"href="{{ path('form') }}">Ajout Employés</a>
+		</div>
+		<div class="col-6">
+			<a class="btn btn-outline-warning text-dark border border-dark w-100"href="{{ path('salaires') }}">Salaires Employés</a>
+		</div>
+	</div>
+</div>
+{% endblock %}
