@@ -14,27 +14,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EmployesController extends AbstractController
 {
     #[Route('/', name: 'employes')]
-public function index(Request $request, EmployesRepository $repo): Response
-{
-    $sort = $request->query->get('sort', 'asc'); // Récupère la valeur du paramètre 'sort', par défaut 'asc'
+    public function index(Request $request, EmployesRepository $repo): Response
+    {
+        $sort = $request->query->get('sort', 'asc'); 
 
-    // Vérification de la valeur du paramètre 'sort'
-    if (!in_array($sort, ['asc', 'desc'])) {
-        throw new \InvalidArgumentException('Invalid sort parameter.');
+        $employes = $repo->findBy([], ['salaire' => ($sort === 'desc' ? 'DESC' : 'ASC')]);
+
+        return $this->render('employes/index.html.twig', [
+            'employes' => $employes
+        ]);
     }
-
-    $employes = $repo->findBy([], ['salaire' => ($sort === 'asc' ? 'ASC' : 'DESC')]);
-
-    return $this->render('employes/index.html.twig', [
-        'employes' => $employes
-    ]);
-}
 
     #[Route('/modifier/employes/{id}', name: 'update')]
     #[Route('/ajout/employes', name: 'form')]
-    public function form(Request $globals, EntityManagerInterface $manager, Employes $employes = null): Response{
-        
-        if($employes == null){
+    public function form(Request $globals, EntityManagerInterface $manager, Employes $employes = null): Response
+    {
+
+        if ($employes == null) {
             $employes = new Employes;
         }
 
@@ -42,7 +38,7 @@ public function index(Request $request, EmployesRepository $repo): Response
 
         $formEmploye->handleRequest($globals);
 
-        if($formEmploye->isSubmitted() && $formEmploye->isValid()) {
+        if ($formEmploye->isSubmitted() && $formEmploye->isValid()) {
             $manager->persist($employes);
             $manager->flush();
             return $this->redirectToRoute("employes", [
@@ -57,27 +53,28 @@ public function index(Request $request, EmployesRepository $repo): Response
     }
 
     #[Route('/delete/employes/{id}', name: 'delete')]
-    public function delete(Employes $employes, EntityManagerInterface $manager): Response{
+    public function delete(Employes $employes, EntityManagerInterface $manager): Response
+    {
         $manager->remove($employes);
         $manager->flush();
         return $this->redirectToRoute('employes');
     }
 
     #[Route('/see/employes/{id}', name: "see")]
-    public function see(Employes $employe){
+    public function see(Employes $employe)
+    {
         return $this->render('employes/see.html.twig', [
             'employe' => $employe
         ]);
     }
 
     #[Route('/salaires/employes', name: "salaires")]
-    public function salaire(EmployesRepository $repo): Response{
+    public function salaire(EmployesRepository $repo): Response
+    {
 
         $salaires = $repo->findBy([], ['salaire' => 'DESC']);
         return $this->render('employes/salary.html.twig', [
             'salaires' => $salaires
         ]);
     }
-
 }
- 
