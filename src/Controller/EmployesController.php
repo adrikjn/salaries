@@ -14,13 +14,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EmployesController extends AbstractController
 {
     #[Route('/', name: 'employes')]
-    public function index(EmployesRepository $repo): Response
-    {   
-        $employes = $repo->findAll();
-        return $this->render('employes/index.html.twig', [
-            "employes" => $employes
-        ]);
+public function index(Request $request, EmployesRepository $repo): Response
+{
+    $sort = $request->query->get('sort', 'asc'); // Récupère la valeur du paramètre 'sort', par défaut 'asc'
+
+    // Vérification de la valeur du paramètre 'sort'
+    if (!in_array($sort, ['asc', 'desc'])) {
+        throw new \InvalidArgumentException('Invalid sort parameter.');
     }
+
+    $employes = $repo->findBy([], ['salaire' => ($sort === 'asc' ? 'ASC' : 'DESC')]);
+
+    return $this->render('employes/index.html.twig', [
+        'employes' => $employes
+    ]);
+}
 
     #[Route('/modifier/employes/{id}', name: 'update')]
     #[Route('/ajout/employes', name: 'form')]
