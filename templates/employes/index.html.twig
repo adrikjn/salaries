@@ -8,9 +8,9 @@
 
 	<h1 class="text-center mx-auto my-3 text-dark my-5">Employes</h1>
 	<div class="container">
-		<a href="{{ path('employes', { 'sort': (sort == 'asc' ? 'desc' : 'asc') }) }}" class="btn btn-info">
-			{% if sort == 'asc'%}
-				Trier par salaire croissant
+		<a href="{{ path('employes') }}{{ sort == 'desc' ? '' : '?sort=desc' }}" class="btn btn-info">
+			{% if sort == 'desc' %}
+				Reset
 			{% else %}
 				Trier par salaire décroissant
 			{% endif %}
@@ -18,7 +18,7 @@
 
 
 		{# <a href="{{ path('employes', { 'sort': 'asc' }) }}" class="btn btn-info">Trier par salaire croissant</a>
-						<a href="{{ path('employes', { 'sort': 'desc' }) }}" class="btn btn-secondary">Trier par salaire décroissant</a> #}
+								<a href="{{ path('employes', { 'sort': 'desc' }) }}" class="btn btn-secondary">Trier par salaire décroissant</a> #}
 		<table class="table text-center mt-3 rounded">
 			<thead>
 				<tr>

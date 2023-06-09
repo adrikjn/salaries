@@ -16,10 +16,14 @@ class EmployesController extends AbstractController
     #[Route('/', name: 'employes')]
     public function index(Request $request, EmployesRepository $repo): Response
     {
-        $sort = $request->query->get('sort', 'asc'); 
-
-        $employes = $repo->findBy([], ['salaire' => ($sort === 'desc' ? 'DESC' : 'ASC')]);
-
+        $sort = $request->query->get('sort'); 
+    
+        if ($sort === 'desc') {
+            $employes = $repo->findBy([], ['salaire' => 'DESC']);
+        } else {
+            $employes = $repo->findAll();
+        }
+    
         return $this->render('employes/index.html.twig', [
             'employes' => $employes,
             'sort' => $sort,
