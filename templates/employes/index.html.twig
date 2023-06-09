@@ -16,10 +16,10 @@
 			{% endif %}
 		</a>
 
-	
+
 		{# <a href="{{ path('employes', { 'sort': 'asc' }) }}" class="btn btn-info">Trier par salaire croissant</a>
-		<a href="{{ path('employes', { 'sort': 'desc' }) }}" class="btn btn-secondary">Trier par salaire décroissant</a> #}
-		<table class="table table-dark text-center mt-3">
+						<a href="{{ path('employes', { 'sort': 'desc' }) }}" class="btn btn-secondary">Trier par salaire décroissant</a> #}
+		<table class="table text-center mt-3 rounded">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -30,7 +30,7 @@
 					<th>Adresse</th>
 					<th>Poste</th>
 					<th>Salaire</th>
-					<th>DateDeNaissance</th>
+					<th>Date de naissance</th>
 					<th>Options</th>
 				</tr>
 			</thead>
@@ -57,18 +57,17 @@
 								<i class="bi bi-trash text-danger"></i>
 							</a>
 						</td>
-
 					</tr>
 				</tbody>
-			</tbody>
-		{% endfor %}
-	</table>
-	<div class="row">
-		<div class="col-6">
-			<a class="btn btn-outline-success  text-dark border border-dark w-100" href="{{ path('form') }}">Ajout Employés</a>
-		</div>
-		<div class="col-6">
-			<a class="btn btn-outline-warning text-dark border border-dark w-100" href="{{ path('salaires') }}">Highest Paid</a>
+			{% endfor %}
+		</table>
+		<div class="row">
+			<div class="col-6">
+				<a class="btn btn-outline-success  text-dark border border-dark w-100" href="{{ path('form') }}">Ajout Employés</a>
+			</div>
+			<div class="col-6">
+				<a class="btn btn-outline-warning text-dark border border-dark w-100" href="{{ path('salaires') }}">Highest Paid</a>
+			</div>
 		</div>
 	</div>
-</div>{% endblock %}
+{% endblock %}
