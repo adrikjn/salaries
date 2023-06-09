@@ -17,22 +17,30 @@ class Employes
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
+    #[Assert\Length(min:2, max:25, minMessage:"Pas assez de caractère. Il faut au moins {{ limit }} caractères", maxMessage:"Trop de caractère. Il faut au maximum {{ limit }} caractères")]
+    #[Assert\Regex(pattern: '/^[^0-9]{2,25}$/', message: "Le prénom ne peut contenir que des lettres")]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
+    #[Assert\Length(min:2, max:25, minMessage:"Pas assez de caractère. Il faut au moins {{ limit }} caractères", maxMessage:"Trop de caractère. Il faut au maximum {{ limit }} caractères")]
+    #[Assert\Regex(pattern: '/^[^0-9]{2,25}$/', message: "Le prénom ne peut contenir que des lettres")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
+    #[Assert\Length(min: 10, max: 10, exactMessage: "Le nombres de caractères souhaités est de {{ limit }}")]
+    #[Assert\Regex(pattern: '/^[0-9]{10}$/', message:"Le téléphone doit être composé uniquement de chiffres")]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
+    #[Assert\Length(min:8, max:50, minMessage:"Pas assez de caractère. Il faut au moins {{ limit }} caractères", maxMessage:"Trop de caractère. Il faut au maximum {{ limit }} caractères")]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
+    #[Assert\Length(min:5, max:50, minMessage:"Pas assez de caractère. Il faut au moins {{ limit }} caractères", maxMessage:"Trop de caractère. Il faut au maximum {{ limit }} caractères")]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255)]
@@ -41,6 +49,8 @@ class Employes
 
     #[ORM\Column]
     #[Assert\NotBlank(message:"Ce champ ne peut pas être vide")]
+    #[Assert\Regex(pattern: '/^(?:[5-9]\d{2}|[1-9]\d{3,4}|100000)$/',
+    message: "Le salaire doit être un nombre entre 500 et 100000")]
     private ?float $salaire = null;
 
     #[ORM\Column(type: 'date')]
