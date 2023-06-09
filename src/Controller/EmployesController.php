@@ -21,7 +21,8 @@ class EmployesController extends AbstractController
         $employes = $repo->findBy([], ['salaire' => ($sort === 'desc' ? 'DESC' : 'ASC')]);
 
         return $this->render('employes/index.html.twig', [
-            'employes' => $employes
+            'employes' => $employes,
+            'sort' => $sort,
         ]);
     }
 
@@ -72,9 +73,10 @@ class EmployesController extends AbstractController
     public function salaire(EmployesRepository $repo): Response
     {
 
-        $salaires = $repo->findBy([], ['salaire' => 'DESC']);
+        $salary = $repo->findOneBy([], ['salaire' => 'DESC']);
+
         return $this->render('employes/salary.html.twig', [
-            'salaires' => $salaires
+            'highestSalary' => $salary,
         ]);
     }
 }

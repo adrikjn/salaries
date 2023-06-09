@@ -14,17 +14,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for salaire in salaires %}
 					<tr>
-						<td>{{ salaire.nom }}</td>
-						<td>{{ salaire.prenom }}</td>
-						<td class=" text-info fw-bold">{{ salaire.poste }}</td>
-						<td class=" text-danger fw-bold">{{ salaire.salaire }}</td>
+						<td>{{ highestSalary.nom }}</td>
+						<td>{{ highestSalary.prenom }}</td>
+						<td class=" text-info fw-bold">{{ highestSalary.poste }}</td>
+						<td class=" text-danger fw-bold">{{ highestSalary.salaire }}</td>
 					</tr>
-				{% endfor %}
 			</tbody>
 		</table>
     <a class="btn btn-primary" href="{{ path('employes') }}">Retour gestion</a>
-	</div>
-
 {% endblock %}
